@@ -1,18 +1,16 @@
-FROM node:22.13.1
+FROM node:lts-alpine3.19
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install -g @nestjs/cli
-
 RUN npm install
 
-COPY . .
+COPY . . .
 
 RUN npm run build
 
+EXPOSE 3000
 
 CMD ["npm", "run", "start:prod"]
 
-EXPOSE 3000
